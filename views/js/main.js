@@ -450,8 +450,11 @@ var resizePizzas = function(size) {
 
   // Iterates through pizza elements on the page and changes their widths
   function changePizzaSizes(size) {
-    // var randomPizzaContainer = document.querySelectorAll(".randomPizzaContainer"); // TAN
+    // Refactored to use the randomPizzaContainer to produce a single call
+    //    tp getElementsByClassName reducing the time to proces this function.  
     var randomPizzaContainer = document.getElementsByClassName('randomPizzaContainer'); // TAN
+
+    // Establish a width to be used as a percentage.
     var newwidth; // TAN
         function sizeSwitcher (size) {
       switch(size) {
@@ -466,6 +469,8 @@ var resizePizzas = function(size) {
       }
     }
 
+    // Refactored the loop to greatly simply show 
+    //    the new style is calculated
     for (var i = 0; i < randomPizzaContainer.length; i++) {
       randomPizzaContainer[i].style.width = newwidth + "%"; // TAN
     }
@@ -516,11 +521,17 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  // var items = document.querySelectorAll('.mover');
+  // Refactored itemsMover to get the element for the page
+  //    at the global level. This simplifies to only one call
   var items = itemsMover; // TAN
+
+  // Moved the Math.sin outside of the loop so it
+  //    is only calculated once.
   var phasePos = Math.sin((document.body.scrollTop / 1250)); // TAN
   var iMod = 0;
   for (var i = 0; i < items.length; i++) {
+    // Loop now uses one-time calculation for phasePos
+    //    Also removed Modulo and now use a separate counter for iMod
     var phase = (phasePos + (iMod++));  // TAN
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
     if (iMod > 4) // TAN
@@ -537,6 +548,8 @@ function updatePositions() {
   }
 }
 
+// Moved to the global level so we get the itemsMove
+//    only one time for the page.
 var itemsMover = document.getElementsByClassName('mover'); // TAN
 
 // runs updatePositions on scroll
@@ -544,8 +557,11 @@ window.addEventListener('scroll', updatePositions);
 
 // Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+  // Reduced the number of columns to reduce elements required
   var cols = 4; // TAN original 8
   var s = 256;
+  // Only create 12 elements rather than 200
+  //    this significantly reduces the layers created.
   for (var i = 0; i < 12; i++) {  // TAN Orignal 200
     var elem = document.createElement('img');
     elem.className = 'mover';
