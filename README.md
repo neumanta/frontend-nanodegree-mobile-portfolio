@@ -1,5 +1,62 @@
 ## Website Performance Optimization portfolio project
 
+## TomN Code Change Notes
+
+### index.html PageSpeed
+Goal: is to achieve a PageSpeed score over 90  
+Result: Achieved 95
+
+- Added my Google Analytics Trackingn ID
+- Resized the Pizzaria.jpg image creating a smaller version.
+- Changed analytics.js to load async to remove render blocking js.
+- Removed the Google Fonts as they are not required and only slowing things down.
+- Updated to inline CSS removing the redundant CSS from the style.css file
+- Converted the profilepic.jpg to a png file which provided a little better performance.
+
+
+### pizza.html FPS and Jank
+Goal: 60 fps  
+Result: Achieved  
+
+Goal: Resize less than 5ms  
+Achieved: less than 1ms  
+
+#### style.css
+- Added "will-change: transform;" to .mover style.
+	- This allows the pizza images to be on separate layers for better paint optimization
+- Function: changePizzaSizes
+	- Changed all document.querySelectorAll to reference a new variable defined with document.getElementsByClassName
+	- style.width now defined by %
+	- Refactored code to batch the style changes.   
+- Function: updatePositions
+	- Changed all references to document.querySelectorAll to use a variable, which is now only called one time for the page.
+	- document.querySelectorAll has been changed to document.getElementsByClassName
+	- Math.sin is now calculated only 1 time in the function call.
+	- Refactored code to remove modulo operator
+	- Refactored code to batch the style changes
+- Event: DOMContentLoaded
+	- Adjusted cols to 4
+	- Create only 12 pizzas to reduce the number for only visible elements.
+
+### Minification and Image Resize
+- Image resizing:Snagit
+- Minification:
+	- I found the following resource for SublimeText 2: [https://packagecontrol.io/packages/Minify](https://packagecontrol.io/packages/Minify "Package Control Minify")
+- [Google Developers Minification tools link](https://developers.google.com/speed/docs/insights/MinifyResources "Google Developers Minification Tools Link")
+- Manual Minify Tools
+	- [http://javascript-minifier.com/](http://javascript-minifier.com/)
+	- [http://cssminifier.com/](http://cssminifier.com/)
+	- [http://img-resize.com/](http://img-resize.com/)
+- JavaScript Obfuscation for code protection: [https://javascriptobfuscator.com/Javascript-Obfuscator.aspx](https://javascriptobfuscator.com/Javascript-Obfuscator.aspx)
+ 
+I will have to perform additional testing to implement the minification in an automated process to production.
+
+
+
+
+----------
+
+## Challenge Details
 Your challenge, if you wish to accept it (and we sure hope you will), is to optimize this online portfolio for speed! In particular, optimize the critical rendering path and make this page render as quickly as possible by applying the techniques you've picked up in the [Critical Rendering Path course](https://www.udacity.com/course/ud884).
 
 To get started, check out the repository, inspect the code,
