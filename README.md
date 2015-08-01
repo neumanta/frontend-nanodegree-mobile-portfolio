@@ -38,10 +38,16 @@ Achieved: less than 1ms
 	- Adjusted cols to 4
 	- Create only 12 pizzas to reduce the number for only visible elements.
 
-### Minification and Image Resize
-- Image resizing:Snagit
+### Minification and Image Resize  
+
+- Minified files:  
+	- prod/views/js/main.js
+	- prod/css/style.css
+- Image resizing:
+	- Snagit
 - Minification:
-	- I found the following resource for SublimeText 2: [https://packagecontrol.io/packages/Minify](https://packagecontrol.io/packages/Minify "Package Control Minify")
+	- I found the following resource for SublimeText 2:
+		- [https://packagecontrol.io/packages/Minify](https://packagecontrol.io/packages/Minify "Package Control Minify")
 - [Google Developers Minification tools link](https://developers.google.com/speed/docs/insights/MinifyResources "Google Developers Minification Tools Link")
 - Manual Minify Tools
 	- [http://javascript-minifier.com/](http://javascript-minifier.com/)
@@ -50,9 +56,6 @@ Achieved: less than 1ms
 - JavaScript Obfuscation for code protection: [https://javascriptobfuscator.com/Javascript-Obfuscator.aspx](https://javascriptobfuscator.com/Javascript-Obfuscator.aspx)
  
 I will have to perform additional testing to implement the minification in an automated process to production.
-
-
-
 
 ----------
 
